@@ -18,6 +18,11 @@ const postMutant = async (req, res) => {
   }
 }
 
+const getStats = async (req, res) => {
+
+}
+
 module.exports = {
-  postMutant
+  postMutant,
+  getStats
 }

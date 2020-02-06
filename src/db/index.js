@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose()
 
-const db = new sqlite3.Database('./stats.db')
+const db = new sqlite3.Database('./src/data/stats.db')
 
 db.select = function () {
   return new Promise((resolve, reject) => {
