@@ -2,18 +2,15 @@
 
 const http = require('http')
 const express = require('express')
-const { isMutant } = require('./services')
+const routes = require('./routes')
 
 const app = express()
+app.use(express.json())
+app.use('/api', routes)
+
 const server = http.createServer(app)
 const port = process.env.PORT || 3000
-const dna = ['3TGCGA', 'CAGTGC', 'TTATGT', 'AGAA2G', '1CCCTA', 'TCACTG']
 
 server.listen(port, () => {
   console.log(`Server listen on port ${port}`)
 })
-
-// const dnaArray = dna.map(e => Array.from(e))
-// console.log(dnaArray)
-// isMutant(dnaArray).then(res => console.log(`Is mutant: ${res}`))
-// console.log('Not blocking event loop')

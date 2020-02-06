@@ -1,0 +1,18 @@
+{
+  "dna1": [
+    "3TGCGA",
+    "CAGTGC",
+    "TTATGT",
+    "AGAA2G",
+    "1CCCTA",
+    "TCACTG"
+  ],
+  "dna2": [
+    "ATGCGA",
+    "CAGTGC",
+    "TTATGT",
+    "AGAAGG",
+    "CCCCTA",
+    "TCACTG"
+  ]
+}
