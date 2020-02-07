@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predev": "node src/db/setup.js",
     "dev": "nodemon src/index.js",
-    "prestart": "node src/db/setup.js",
-    "start": "node src/index.js"
+    "prestart": "NODE_ENV=production node src/db/setup.js",
+    "start": "NODE_ENV=production node src/index.js",
+    "pretest": "NODE_ENV=test rm -f src/data/stats.test.db && NODE_ENV=test node src/db/setup.js",
+    "test": "NODE_ENV=test jest --testTimeout=10000"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +19,21 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
-    "standard": "^14.3.1"
+    "standard": "^14.3.1",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "env": [
+      "node",
+      "jest"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
