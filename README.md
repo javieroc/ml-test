@@ -33,5 +33,20 @@ npm run test
 
 Available endpoints:
 
-- `/api/mutant`
-- `/api/stats`
+Payload to test:
+
+```json
+{
+  "dna": [
+    "ATGCGA",
+    "CAGTGC",
+    "TTATGT",
+    "AGAAGG",
+    "CCCCTA",
+    "TCACTG"
+  ]
+}
+```
+
+- POST: `https://rocky-ocean-07374.herokuapp.com/api/mutant`
+- GET: `https://rocky-ocean-07374.herokuapp.com/api/stats`
