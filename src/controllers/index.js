@@ -19,7 +19,19 @@ const postMutant = async (req, res) => {
 }
 
 const getStats = async (req, res) => {
-
+  try {
+    const mutants = await db.count('mutant')
+    const humans = await db.count('human')
+    const ratio = mutants > humans && mutants !== 0 ? humans / mutants
+      : humans !== 0 ? mutants / humans : NaN
+    return res.status(200).send({
+      count_mutant_dna: mutants,
+      count_human_dna: humans,
+      ratio
+    })
+  } catch (err) {
+    res.status(500).send('Server error')
+  }
 }
 
 module.exports = {

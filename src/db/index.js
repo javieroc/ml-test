@@ -2,11 +2,11 @@ const sqlite3 = require('sqlite3').verbose()
 
 const db = new sqlite3.Database('./src/data/stats.db')
 
-db.select = function () {
+db.count = function (value) {
   return new Promise((resolve, reject) => {
-    db.all('SELECT results FROM stats', [], (err, rows) => {
+    db.get('SELECT COUNT(*) as count FROM stats WHERE results = ?', [value], (err, row) => {
       if (err) return reject(err)
-      return resolve(rows)
+      return resolve(row.count)
     })
   })
 }
