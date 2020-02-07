@@ -1,5 +1,5 @@
 const db = require('../db')
-const { isMutant } = require('../utils')
+const { isMutant, gcd } = require('../utils')
 
 const postMutant = async (req, res) => {
   const { dna } = req.body
@@ -22,8 +22,7 @@ const getStats = async (req, res) => {
   try {
     const mutants = await db.count('mutant')
     const humans = await db.count('human')
-    const ratio = mutants > humans && mutants !== 0 ? humans / mutants
-      : humans !== 0 ? mutants / humans : NaN
+    const ratio = `${mutants / gcd(mutants, humans)}:${humans / gcd(mutants, humans)}`
     return res.status(200).send({
       count_mutant_dna: mutants,
       count_human_dna: humans,
