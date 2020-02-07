@@ -5,9 +5,13 @@ const postMutant = async (req, res) => {
   const { dna } = req.body
   try {
     const dnaToCheck = dna.map(e => Array.from(e))
+    const dnaChain = dna.join('')
     const result = await isMutant(dnaToCheck)
     const type = result ? 'mutant' : 'human'
-    await db.insert(type)
+    const row = await db.select(dnaChain)
+    if (!row) {
+      await db.insert(dnaChain, type)
+    }
     if (result) {
       return res.status(200).send({ isMutant: result })
     }
